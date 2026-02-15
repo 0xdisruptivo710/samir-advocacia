@@ -1,5 +1,5 @@
 import { SlideWrapper, SlideTitle, GlassCard } from './SlideComponents';
-import { Bot, ShoppingCart, Database, ArrowRight, Smartphone, Zap } from 'lucide-react';
+import { Bot, ShoppingCart, Database, ArrowRight, Smartphone, Zap, BrainCircuit } from 'lucide-react';
 
 export const CoverSlide = () => (
   <div className="flex flex-col items-center justify-center h-full relative">
@@ -20,7 +20,7 @@ export const CoverSlide = () => (
       </p>
       <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground animate-fade-in-delay">
         <span className="w-12 h-px bg-border" />
-        <span className="tracking-wide">12 Semanas • 3 Etapas • 1 Transformação</span>
+        <span className="tracking-wide">16 Semanas • 3 Etapas • 1 Transformação</span>
         <span className="w-12 h-px bg-border" />
       </div>
     </div>
@@ -30,18 +30,18 @@ export const CoverSlide = () => (
 export const OverviewSlide = () => {
   const pillars = [
     {
-      icon: Bot, title: 'CRM Inteligente', subtitle: 'Etapa 1 • Semanas 1–6',
+      icon: Bot, title: 'CRM Inteligente', subtitle: 'Etapa 1 • Semanas 1–4',
       items: ['Descentralização de números', 'IA para atendimento 24/7', 'Gestão hierárquica', 'Automações de vendas'],
       gradient: 'from-primary to-primary/40',
     },
     {
-      icon: ShoppingCart, title: 'Integração E-commerce', subtitle: 'Etapa 2 • Semanas 7–10',
+      icon: ShoppingCart, title: 'Integração E-commerce', subtitle: 'Etapa 2 • Semanas 5–10',
       items: ['Conexão Auryn Gateway', 'Carrinho abandonado', 'Acompanhamento de pedidos', 'Painel kanban de vendas'],
       gradient: 'from-secondary to-secondary/40',
     },
     {
-      icon: Database, title: 'Enriquecimento de Dados', subtitle: 'Etapa 3 • Semanas 11–12',
-      items: ['Importação XML do ERP', 'Banco de dados externo', 'Análises e BI', 'Decisões data-driven'],
+      icon: Database, title: 'Enriquecimento de Dados', subtitle: 'Etapa 3 • Semanas 11–16',
+      items: ['Importação XML do ERP', 'Banco de dados externo', 'Análises e Dashboards', 'Decisões data-driven'],
       gradient: 'from-accent to-accent/40',
     },
   ];
@@ -82,9 +82,9 @@ export const ArchitectureSlide = () => (
       <div className="flex flex-col items-center gap-6 w-full max-w-4xl">
         <GlassCard className="px-8 py-5 border-primary/20 glow-primary">
           <div className="flex items-center gap-3">
-            <Bot className="w-7 h-7 text-primary" />
+            <BrainCircuit className="w-7 h-7 text-primary" />
             <div>
-              <p className="font-bold text-lg">CRM / Bot AIOS</p>
+              <p className="font-bold text-lg">AIOS / Inteligência Artificial</p>
               <p className="text-xs text-muted-foreground">Centro de Operações</p>
             </div>
           </div>
@@ -129,35 +129,48 @@ export const ArchitectureSlide = () => (
 
 export const Stage1TimelineSlide = () => {
   const steps = [
-    { week: '1–2', title: 'Setup CRM', desc: '3 números WhatsApp Business API, hierarquia, kanban personalizado' },
-    { week: '3', title: 'Treinamento', desc: '3 sessões presenciais com equipe, boas práticas' },
-    { week: '4–5', title: 'IA Conversacional', desc: 'Prompts especializados, base de conhecimento, testes internos' },
-    { week: '5–6', title: 'Validação IA', desc: 'Deploy do agente, testes com equipe, ajustes finais' },
-    { week: '6', title: 'Automações', desc: 'Kanban automatizado, etiquetagem, follow-ups, reativação' },
+    { week: '1', title: 'Setup CRM', desc: '3 números WhatsApp Business API, hierarquia, kanban personalizado' },
+    { week: '2', title: 'Treinamento', desc: '3 sessões presenciais com equipe, boas práticas' },
+    { week: '3', title: 'IA Conversacional', desc: 'Prompts especializados, base de conhecimento, testes internos' },
+    { week: '3–4', title: 'Validação IA', desc: 'Deploy do agente, testes com equipe, ajustes finais' },
+    { week: '4', title: 'Automações', desc: 'Kanban automatizado, etiquetagem, follow-ups, reativação' },
   ];
 
   return (
     <SlideWrapper>
-      <SlideTitle subtitle="Semanas 1–6 • CRM Inteligente">Etapa 1 — Implementação do CRM</SlideTitle>
+      <SlideTitle subtitle="Semanas 1–4 • CRM Inteligente">Etapa 1 — Implementação do CRM</SlideTitle>
       <div className="flex-1 flex items-center">
         <div className="w-full space-y-6">
-          <div className="relative h-2 bg-muted rounded-full overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-primary to-secondary rounded-full" />
+          {/* Flowchart style */}
+          <div className="relative">
+            {/* Connector line */}
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent" />
+            
+            <div className="space-y-4">
+              {steps.map((s, i) => (
+                <div key={i} className="relative flex items-start gap-5 pl-14">
+                  {/* Node circle */}
+                  <div className="absolute left-4 top-3 w-5 h-5 rounded-full border-2 border-primary bg-background flex items-center justify-center z-10">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                  </div>
+                  
+                  <GlassCard className="p-4 flex-1 hover:scale-[1.01] transition-transform">
+                    <div className="flex items-center gap-3 mb-1">
+                      <span className="inline-flex px-2.5 py-0.5 rounded-md text-xs font-mono bg-primary/10 text-primary border border-primary/20">
+                        Sem {s.week}
+                      </span>
+                      <h4 className="font-semibold text-sm">{s.title}</h4>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </GlassCard>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-            {steps.map((s, i) => (
-              <GlassCard key={i} className="p-4 hover:scale-[1.03] transition-transform">
-                <span className="inline-flex px-2.5 py-0.5 rounded-md text-xs font-mono bg-primary/10 text-primary border border-primary/20 mb-3">
-                  Sem {s.week}
-                </span>
-                <h4 className="font-semibold text-sm mb-1.5">{s.title}</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
-              </GlassCard>
-            ))}
-          </div>
+
           <div className="flex items-center gap-2 justify-end text-sm">
             <div className="w-3 h-3 rounded-full bg-accent" />
-            <span className="text-accent font-medium">✓ Validação Etapa 1 — Fim da Semana 6</span>
+            <span className="text-accent font-medium">✓ Validação Etapa 1 — Fim da Semana 4</span>
           </div>
         </div>
       </div>

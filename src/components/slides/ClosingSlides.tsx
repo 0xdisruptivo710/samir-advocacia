@@ -4,32 +4,32 @@ import { CheckCircle2, Rocket, Handshake, ArrowRight, Target, Clock, Shield, Eye
 export const RoadmapSlide = () => {
   const months = [
     {
-      label: 'Mês 1', title: 'CRM Inteligente', weeks: '1–6', color: 'bg-primary',
+      label: 'Mês 1', title: 'CRM Inteligente', weeks: '1–4', color: 'bg-primary',
       items: ['Setup 3 números', 'Treinamento presencial', 'IA conversacional', 'Automações & kanban'],
     },
     {
-      label: 'Mês 2', title: 'E-commerce', weeks: '7–10', color: 'bg-secondary',
+      label: 'Mês 2–3', title: 'E-commerce', weeks: '5–10', color: 'bg-secondary',
       items: ['Integração Auryn', 'Automações de carrinho', 'Dashboard de vendas', 'Validação ponta a ponta'],
     },
     {
-      label: 'Mês 3', title: 'Dados & BI', weeks: '11–12', color: 'bg-accent',
+      label: 'Mês 3–4', title: 'Dados & Dashboards', weeks: '11–16', color: 'bg-accent',
       items: ['XML Parser do ERP', 'Banco Supabase', 'Enriquecimento auto', 'Analytics & dashboards'],
     },
   ];
 
   return (
     <SlideWrapper>
-      <SlideTitle subtitle="Visão consolidada de 12 semanas">Roadmap Completo</SlideTitle>
+      <SlideTitle subtitle="Visão consolidada de 16 semanas">Roadmap Completo</SlideTitle>
       <div className="flex-1 flex items-center">
         <div className="w-full space-y-6">
           {/* Full progress bar */}
           <div className="relative h-3 bg-muted rounded-full overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-[50%] bg-primary rounded-full" />
-            <div className="absolute inset-y-0 left-[50%] w-[33%] bg-secondary rounded-full" />
-            <div className="absolute inset-y-0 left-[83%] w-[17%] bg-accent rounded-full" />
+            <div className="absolute inset-y-0 left-0 w-[25%] bg-primary rounded-full" />
+            <div className="absolute inset-y-0 left-[25%] w-[37.5%] bg-secondary rounded-full" />
+            <div className="absolute inset-y-0 left-[62.5%] w-[37.5%] bg-accent rounded-full" />
           </div>
           <div className="flex justify-between text-xs text-muted-foreground font-mono px-1">
-            {Array.from({ length: 13 }, (_, i) => (
+            {Array.from({ length: 17 }, (_, i) => (
               <span key={i}>{i === 0 ? 'Início' : `S${i}`}</span>
             ))}
           </div>
@@ -57,9 +57,9 @@ export const RoadmapSlide = () => {
 
           <div className="flex justify-center gap-8 text-sm">
             {[
-              { label: 'Semana 6', desc: 'CRM Operacional' },
+              { label: 'Semana 4', desc: 'CRM Operacional' },
               { label: 'Semana 10', desc: 'E-commerce Integrado' },
-              { label: 'Semana 12', desc: 'Projeto Completo' },
+              { label: 'Semana 16', desc: 'Projeto Completo' },
             ].map((m, i) => (
               <div key={i} className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent" />
@@ -111,7 +111,7 @@ export const BenefitsSlide = () => {
     { before: 'Gestão desorganizada', after: 'Hierarquia estruturada' },
     { before: 'Processos manuais', after: 'Automação inteligente' },
     { before: 'Sem follow-up', after: 'Follow-up 24/7 com IA' },
-    { before: 'Sem dados', after: 'BI em tempo real' },
+    { before: 'Sem dados', after: 'Dashboards em tempo real' },
     { before: 'Abordagem reativa', after: 'Estratégia proativa' },
   ];
 

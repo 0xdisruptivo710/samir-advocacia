@@ -18,7 +18,7 @@ export const Stage1DeliverablesSlide = () => {
       <div className="flex-1 flex items-center">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full">
           {deliverables.map((d, i) => (
-            <GlassCard key={i} className={`p-4 hover:scale-[1.03] transition-transform ${i === 6 ? 'md:col-start-2' : ''}`}>
+            <GlassCard key={i} className={`p-4 hover:scale-[1.03] transition-transform ${i === 3 ? 'md:col-start-1' : ''}`}>
               <d.icon className="w-6 h-6 text-primary mb-3" />
               <h4 className="font-semibold text-sm mb-1">{d.title}</h4>
               <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{d.desc}</p>
@@ -35,29 +35,47 @@ export const Stage1DeliverablesSlide = () => {
 
 export const Stage2Slide = () => {
   const steps = [
-    { week: '7', title: 'Apresentação da Estrutura', desc: 'Arquitetura de integração, fluxos Auryn ↔ CRM, aprovação técnica' },
-    { week: '8–9', title: 'Desenvolvimento', desc: 'Conexão CRM ↔ Auryn, webhooks de status, automações por evento' },
-    { week: '9', title: 'Dashboard de Vendas', desc: 'Métricas em tempo real, conversão, abandono, ticket médio' },
+    { week: '5', title: 'Apresentação da Estrutura', desc: 'Arquitetura de integração, fluxos Auryn ↔ CRM, aprovação técnica' },
+    { week: '6–7', title: 'Desenvolvimento', desc: 'Conexão CRM ↔ Auryn, webhooks de status, automações por evento' },
+    { week: '8–9', title: 'Dashboard de Vendas', desc: 'Métricas em tempo real, conversão, abandono, ticket médio' },
     { week: '10', title: 'Validação', desc: 'Testes ponta a ponta, simulações, ajustes finais, aprovação' },
   ];
 
   return (
     <SlideWrapper>
-      <SlideTitle subtitle="Semanas 7–10 • Integração E-commerce">Etapa 2 — E-commerce</SlideTitle>
+      <SlideTitle subtitle="Semanas 5–10 • Integração E-commerce">Etapa 2 — E-commerce</SlideTitle>
       <div className="flex-1 flex items-center">
         <div className="w-full space-y-6">
-          <div className="relative h-2 bg-muted rounded-full overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-[83%] bg-gradient-to-r from-primary via-secondary to-secondary rounded-full" />
+          {/* Flowchart style */}
+          <div className="relative">
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-secondary via-secondary to-accent" />
+            
+            <div className="space-y-4">
+              {steps.map((s, i) => (
+                <div key={i} className="relative flex items-start gap-5 pl-14">
+                  <div className="absolute left-4 top-3 w-5 h-5 rounded-full border-2 border-secondary bg-background flex items-center justify-center z-10">
+                    <div className="w-2 h-2 rounded-full bg-secondary" />
+                  </div>
+                  
+                  <GlassCard className="p-4 flex-1 hover:scale-[1.01] transition-transform">
+                    <div className="flex items-center gap-3 mb-1">
+                      <TimelineBadge>Sem {s.week}</TimelineBadge>
+                      <h4 className="font-semibold text-sm">{s.title}</h4>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </GlassCard>
+
+                  {/* Arrow connector to next */}
+                  {i < steps.length - 1 && (
+                    <div className="absolute left-6 -bottom-2 transform -translate-x-1/2">
+                      <ArrowRight className="w-3 h-3 text-secondary rotate-90" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {steps.map((s, i) => (
-              <GlassCard key={i} className="p-5 hover:scale-[1.03] transition-transform">
-                <TimelineBadge>Sem {s.week}</TimelineBadge>
-                <h4 className="font-semibold mt-3 mb-1.5">{s.title}</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
-              </GlassCard>
-            ))}
-          </div>
+
           <div className="flex items-center gap-2 justify-end text-sm">
             <div className="w-3 h-3 rounded-full bg-accent" />
             <span className="text-accent font-medium">✓ Validação Etapa 2 — Fim da Semana 10</span>
@@ -131,38 +149,45 @@ export const AutomationsSlide = () => {
 
 export const Stage3Slide = () => {
   const items = [
-    { title: 'Parser XML do ERP', desc: 'Importação automatizada de dados do ERP Matrix, validação e mapeamento de campos' },
-    { title: 'Banco Supabase', desc: 'Estrutura relacional otimizada, índices, conexão segura com CRM' },
-    { title: 'Enriquecimento Auto', desc: 'Processo executado pela AIOS — zero demanda interna para Matrix' },
-    { title: 'Dashboards & BI', desc: 'Painéis em tempo real, insights de comportamento, relatórios personalizados' },
+    { week: '11', title: 'Parser XML do ERP', desc: 'Importação automatizada de dados do ERP Matrix, validação e mapeamento de campos' },
+    { week: '12–13', title: 'Banco Supabase', desc: 'Estrutura relacional otimizada, índices, conexão segura com CRM' },
+    { week: '14', title: 'Enriquecimento Auto', desc: 'Processo executado pela AIOS — zero demanda interna para Matrix' },
+    { week: '15–16', title: 'Dashboards', desc: 'Painéis em tempo real, insights de comportamento, relatórios personalizados' },
   ];
 
   return (
     <SlideWrapper>
-      <SlideTitle subtitle="Semanas 11–12 • Enriquecimento via ERP">Etapa 3 — Dados & Inteligência</SlideTitle>
+      <SlideTitle subtitle="Semanas 11–16 • Enriquecimento via ERP">Etapa 3 — Dados & Inteligência</SlideTitle>
       <div className="flex-1 flex items-center">
         <div className="w-full space-y-6">
-          <div className="relative h-2 bg-muted rounded-full overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-primary via-secondary to-accent rounded-full" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {items.map((item, i) => (
-              <GlassCard key={i} className="p-5 flex gap-4 items-start hover:scale-[1.02] transition-transform">
-                <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0 text-accent font-bold text-sm">
-                  {i + 1}
+          {/* Flowchart style */}
+          <div className="relative">
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent to-primary" />
+            
+            <div className="space-y-4">
+              {items.map((item, i) => (
+                <div key={i} className="relative flex items-start gap-5 pl-14">
+                  <div className="absolute left-4 top-3 w-5 h-5 rounded-full border-2 border-accent bg-background flex items-center justify-center z-10">
+                    <div className="w-2 h-2 rounded-full bg-accent" />
+                  </div>
+                  
+                  <GlassCard className="p-4 flex-1 hover:scale-[1.01] transition-transform">
+                    <div className="flex items-center gap-3 mb-1">
+                      <span className="inline-flex px-2.5 py-0.5 rounded-md text-xs font-mono bg-accent/10 text-accent border border-accent/20">
+                        Sem {item.week}
+                      </span>
+                      <h4 className="font-semibold text-sm">{item.title}</h4>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </GlassCard>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-1">{item.title}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
-              </GlassCard>
-            ))}
+              ))}
+            </div>
           </div>
 
           <GlassCard className="p-4 border-accent/20 flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-accent" />
-            <span className="text-accent font-medium text-sm">Sistema em Produção — Fim da Semana 12</span>
+            <span className="text-accent font-medium text-sm">Sistema em Produção — Fim da Semana 16</span>
             <ArrowRight className="w-4 h-4 text-accent ml-auto" />
             <span className="text-xs text-muted-foreground">Manutenção periódica contínua</span>
           </GlassCard>
