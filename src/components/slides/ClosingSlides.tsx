@@ -117,7 +117,7 @@ export const BenefitsSlide = () => {
 
   const kpis = [
     { icon: Clock, label: '−70% tempo de resposta' },
-    { icon: TrendingUp, label: '+50% taxa de conversão' },
+    { icon: TrendingUp, label: '+40% taxa de conversão' },
     { icon: Eye, label: '100% rastreabilidade' },
     { icon: Shield, label: '24/7 disponibilidade' },
     { icon: Target, label: 'Zero perda de oportunidades' },

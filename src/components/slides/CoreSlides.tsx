@@ -6,10 +6,11 @@ export const Stage1DeliverablesSlide = () => {
     { icon: Bot, title: 'IA Conversacional', desc: 'Atendimento 24/7 com qualificação automática', metric: '−70% tempo resposta' },
     { icon: BarChart3, title: 'Painel Kanban', desc: 'Visualização completa do pipeline de vendas', metric: 'Gestão visual' },
     { icon: Tag, title: 'Etiquetagem Inteligente', desc: 'Classificação automática por estágio', metric: 'Auto-organização' },
+    { icon: TrendingUp, title: 'Follow-ups Automáticos', desc: 'Sequências programadas de reengajamento', metric: '+Conversão' },
     { icon: Users, title: 'Hierarquia de Usuários', desc: 'Gestão de permissões e acessos', metric: 'Controle total' },
     { icon: Phone, title: '3 Números WhatsApp', desc: 'Separação por canal e vertical', metric: 'Rastreabilidade' },
     { icon: RefreshCw, title: 'Distribuição de Leads', desc: 'Roteamento automático inteligente', metric: 'Equidade' },
-    { icon: TrendingUp, title: 'Follow-ups Automáticos', desc: 'Sequências programadas de reengajamento', metric: '+Conversão' },
+    { icon: MessageSquare, title: 'Disparo em Massa', desc: 'Envio estratégico para listagens segmentadas', metric: 'Alcance máximo' },
   ];
 
   return (
@@ -18,7 +19,7 @@ export const Stage1DeliverablesSlide = () => {
       <div className="flex-1 flex items-center">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full">
           {deliverables.map((d, i) => (
-            <GlassCard key={i} className={`p-4 hover:scale-[1.03] transition-transform ${i === 3 ? 'md:col-start-1' : ''}`}>
+            <GlassCard key={i} className="p-4 hover:scale-[1.03] transition-transform">
               <d.icon className="w-6 h-6 text-primary mb-3" />
               <h4 className="font-semibold text-sm mb-1">{d.title}</h4>
               <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{d.desc}</p>

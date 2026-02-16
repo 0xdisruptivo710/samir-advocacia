@@ -98,9 +98,9 @@ export const ArchitectureSlide = () => (
 
         <div className="grid grid-cols-3 gap-4 w-full">
           {[
-            { label: 'Nº 1 — Varejo', sub: 'Revelação Varejo' },
-            { label: 'Nº 2 — Digital', sub: 'Portal Matrix / Criativa / Emoldura' },
-            { label: 'Nº 3 — Pro', sub: 'Matrix Pro / Profissional / Molduras' },
+            { label: 'Revelação / Portal Matrix', sub: 'Revelação Varejo' },
+            { label: 'Matrix Pro / Revelação', sub: 'Portal Matrix / Criativa / Emoldura' },
+            { label: 'Matrix Molduras', sub: 'Matrix Pro / Profissional / Molduras' },
           ].map((n, i) => (
             <GlassCard key={i} className="text-center py-4">
               <Smartphone className="w-5 h-5 mx-auto mb-2 text-accent" />
