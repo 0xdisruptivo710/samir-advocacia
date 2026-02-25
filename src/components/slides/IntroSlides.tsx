@@ -4,7 +4,7 @@ import { SlideWrapper, SlideTitle, GlassCard, useCountUp } from './SlideComponen
 // ─────────────────────────────────────────────
 // SLIDE 1 — CAPA
 // ─────────────────────────────────────────────
-export const CoverSlide = () => (
+export const CoverSlide = ({ onNext }: { onNext?: () => void }) => (
   <div className="flex flex-col items-center justify-center h-full relative overflow-hidden">
     {/* Ambient glows */}
     <div
@@ -56,6 +56,7 @@ export const CoverSlide = () => (
 
       {/* CTA */}
       <button
+        onClick={onNext}
         className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm transition-all hover:scale-105"
         style={{ background: '#c9a84c', color: '#070b14', boxShadow: '0 0 32px rgba(201,168,76,0.32)' }}
       >

@@ -73,7 +73,7 @@ export const Presentation = () => {
 
       {/* Slide content */}
       <div key={current} className="absolute inset-0 animate-fade-in">
-        <Slide />
+        <Slide onNext={() => navigate(1)} />
       </div>
 
       {/* Bottom navigation */}
