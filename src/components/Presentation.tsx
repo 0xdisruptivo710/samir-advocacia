@@ -1,14 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CoverSlide, OverviewSlide, ArchitectureSlide, Stage1TimelineSlide } from './slides/IntroSlides';
-import { Stage1DeliverablesSlide, Stage2Slide, AutomationsSlide, Stage3Slide } from './slides/CoreSlides';
-import { RoadmapSlide, TechStackSlide, BenefitsSlide, NextStepsSlide } from './slides/ClosingSlides';
+import { CoverSlide, ProblemSlide, CostSlide, SolutionSlide } from './slides/IntroSlides';
+import { FluxoASlide, FluxoBSlide, CRMSlide, TrafficDataSlide } from './slides/CoreSlides';
+import { ReactivationSlide, InvestmentSlide, NextStepsSlide } from './slides/ClosingSlides';
 
 const slides = [
-  CoverSlide, OverviewSlide, ArchitectureSlide, Stage1TimelineSlide,
-  Stage1DeliverablesSlide, Stage2Slide, AutomationsSlide, Stage3Slide,
-  RoadmapSlide, TechStackSlide, BenefitsSlide, NextStepsSlide,
+  CoverSlide,
+  ProblemSlide,
+  CostSlide,
+  SolutionSlide,
+  FluxoASlide,
+  FluxoBSlide,
+  CRMSlide,
+  TrafficDataSlide,
+  ReactivationSlide,
+  InvestmentSlide,
+  NextStepsSlide,
 ];
 
 export const Presentation = () => {
@@ -27,13 +35,41 @@ export const Presentation = () => {
     return () => window.removeEventListener('keydown', handler);
   }, [navigate]);
 
+  // Touch / swipe support
+  useEffect(() => {
+    let startX = 0;
+    const onTouchStart = (e: TouchEvent) => { startX = e.touches[0].clientX; };
+    const onTouchEnd = (e: TouchEvent) => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
+    };
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [navigate]);
+
   const Slide = slides[current];
 
   return (
     <div className="relative w-full h-screen bg-background overflow-hidden select-none">
-      {/* Ambient background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(217_100%_55%/0.08),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(255_70%_65%/0.06),transparent_50%)]" />
+      {/* Ambient background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse at top left, rgba(201,168,76,0.05) 0%, transparent 50%)',
+        }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse at bottom right, rgba(30,58,95,0.12) 0%, transparent 50%)',
+        }}
+      />
 
       {/* Slide content */}
       <div key={current} className="absolute inset-0 animate-fade-in">
@@ -56,10 +92,10 @@ export const Presentation = () => {
               key={i}
               onClick={() => setCurrent(i)}
               className={cn(
-                "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
+                'h-1.5 rounded-full transition-all duration-300 cursor-pointer',
                 i === current
-                  ? "w-8 bg-primary"
-                  : "w-1.5 bg-muted-foreground/25 hover:bg-muted-foreground/40"
+                  ? 'w-8 bg-primary'
+                  : 'w-1.5 bg-muted-foreground/25 hover:bg-muted-foreground/40'
               )}
             />
           ))}

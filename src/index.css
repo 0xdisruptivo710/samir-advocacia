@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,34 +6,29 @@
 
 @layer base {
   :root {
-    --background: 225 25% 8%;
-    --foreground: 210 20% 93%;
-    --card: 225 20% 13%;
-    --card-foreground: 210 20% 93%;
-    --popover: 225 20% 13%;
-    --popover-foreground: 210 20% 93%;
-    --primary: 217 100% 55%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 255 70% 65%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 225 15% 18%;
-    --muted-foreground: 225 10% 50%;
-    --accent: 163 82% 45%;
-    --accent-foreground: 225 25% 8%;
-    --destructive: 0 84% 60%;
+    /* #070b14 — azul-marinho quase preto */
+    --background: 221 49% 5%;
+    --foreground: 210 15% 93%;
+    --card: 221 40% 9%;
+    --card-foreground: 210 15% 93%;
+    --popover: 221 40% 9%;
+    --popover-foreground: 210 15% 93%;
+    /* #c9a84c — dourado advocacia */
+    --primary: 44 54% 54%;
+    --primary-foreground: 221 49% 5%;
+    /* #1e3a5f — azul-marinho profundo */
+    --secondary: 214 52% 25%;
+    --secondary-foreground: 210 15% 93%;
+    --muted: 221 30% 13%;
+    --muted-foreground: 221 15% 52%;
+    --accent: 44 54% 54%;
+    --accent-foreground: 221 49% 5%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 225 15% 20%;
-    --input: 225 15% 20%;
-    --ring: 217 100% 55%;
+    --border: 221 25% 17%;
+    --input: 221 25% 17%;
+    --ring: 44 54% 54%;
     --radius: 0.75rem;
-    --sidebar-background: 225 25% 10%;
-    --sidebar-foreground: 210 20% 93%;
-    --sidebar-primary: 217 100% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 225 15% 18%;
-    --sidebar-accent-foreground: 210 20% 93%;
-    --sidebar-border: 225 15% 20%;
-    --sidebar-ring: 217 100% 55%;
   }
 }
 
@@ -50,27 +45,53 @@
 @layer utilities {
   .glass {
     @apply backdrop-blur-xl border;
-    background: hsl(var(--card) / 0.5);
-    border-color: hsl(var(--foreground) / 0.08);
+    background: rgba(10, 16, 30, 0.55);
+    border-color: rgba(255, 255, 255, 0.07);
   }
   .glass-strong {
     @apply backdrop-blur-xl border;
-    background: hsl(var(--card) / 0.7);
-    border-color: hsl(var(--foreground) / 0.12);
+    background: rgba(10, 16, 30, 0.82);
+    border-color: rgba(255, 255, 255, 0.10);
+  }
+  .glass-gold {
+    background: rgba(201, 168, 76, 0.07);
+    border: 1px solid rgba(201, 168, 76, 0.25);
   }
   .gradient-text {
-    background: linear-gradient(135deg, hsl(217, 100%, 55%), hsl(255, 70%, 65%), hsl(163, 82%, 45%));
+    background: linear-gradient(135deg, #c9a84c 0%, #e8d49a 50%, #c9a84c 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .gradient-border-primary {
-    border-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary))) 1;
-  }
   .glow-primary {
-    box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 40px rgba(201, 168, 76, 0.2);
   }
-  .glow-accent {
-    box-shadow: 0 0 40px -10px hsl(var(--accent) / 0.3);
+  .glow-gold {
+    box-shadow: 0 0 28px rgba(201, 168, 76, 0.3);
   }
 }
+
+/* Staggered message animations — WhatsApp mockup (Slide 5) */
+@keyframes msg-appear {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.msg-0 { opacity: 0; animation: msg-appear 0.35s ease-out 0.25s forwards; }
+.msg-1 { opacity: 0; animation: msg-appear 0.35s ease-out 1.00s forwards; }
+.msg-2 { opacity: 0; animation: msg-appear 0.35s ease-out 1.80s forwards; }
+.msg-3 { opacity: 0; animation: msg-appear 0.35s ease-out 2.60s forwards; }
+
+/* Staggered timeline animations — Slide 6 */
+.tl-0 { opacity: 0; animation: msg-appear 0.4s ease-out 0.10s forwards; }
+.tl-1 { opacity: 0; animation: msg-appear 0.4s ease-out 0.35s forwards; }
+.tl-2 { opacity: 0; animation: msg-appear 0.4s ease-out 0.60s forwards; }
+.tl-3 { opacity: 0; animation: msg-appear 0.4s ease-out 0.85s forwards; }
+.tl-4 { opacity: 0; animation: msg-appear 0.4s ease-out 1.10s forwards; }
+.tl-5 { opacity: 0; animation: msg-appear 0.4s ease-out 1.35s forwards; }
+
+/* Staggered card animations */
+.stagger-0 { opacity: 0; animation: msg-appear 0.4s ease-out 0.10s forwards; }
+.stagger-1 { opacity: 0; animation: msg-appear 0.4s ease-out 0.25s forwards; }
+.stagger-2 { opacity: 0; animation: msg-appear 0.4s ease-out 0.40s forwards; }
+.stagger-3 { opacity: 0; animation: msg-appear 0.4s ease-out 0.55s forwards; }

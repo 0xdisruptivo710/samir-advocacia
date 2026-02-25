@@ -1,72 +1,98 @@
-import { SlideWrapper, SlideTitle, GlassCard } from './SlideComponents';
-import { CheckCircle2, Rocket, Handshake, ArrowRight, Target, Clock, Shield, Eye, Zap, TrendingUp } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { SlideWrapper, SlideTitle, GlassCard, useCountUp } from './SlideComponents';
 
-export const RoadmapSlide = () => {
-  const months = [
-    {
-      label: 'Mês 1', title: 'CRM Inteligente', weeks: '1–4', color: 'bg-primary',
-      items: ['Setup 3 números', 'Treinamento presencial', 'IA conversacional', 'Automações & kanban'],
-    },
-    {
-      label: 'Mês 2–3', title: 'E-commerce', weeks: '5–10', color: 'bg-secondary',
-      items: ['Integração Auryn', 'Automações de carrinho', 'Dashboard de vendas', 'Validação ponta a ponta'],
-    },
-    {
-      label: 'Mês 3–4', title: 'Dados & Dashboards', weeks: '11–16', color: 'bg-accent',
-      items: ['XML Parser do ERP', 'Banco Supabase', 'Enriquecimento auto', 'Analytics & dashboards'],
-    },
-  ];
+// ─────────────────────────────────────────────
+// SLIDE 9 — REATIVAÇÃO DE BASE
+// ─────────────────────────────────────────────
+const contacts = [
+  { name: 'Carlos M.', value: 'R$ 180k', reactivate: true },
+  { name: 'Patricia S.', value: 'R$ 2,1M', reactivate: true },
+  { name: 'Rodrigo L.', value: 'R$ 450k', reactivate: true },
+  { name: 'Marina C.', value: 'R$ 850k', reactivate: false },
+];
+
+export const ReactivationSlide = () => {
+  const percent = useCountUp(12, 1200);
 
   return (
     <SlideWrapper>
-      <SlideTitle subtitle="Visão consolidada de 16 semanas">Roadmap Completo</SlideTitle>
+      <SlideTitle subtitle="Você tem leads antigos que ainda podem virar contratos">
+        Reativação de base
+      </SlideTitle>
+
       <div className="flex-1 flex items-center">
-        <div className="w-full space-y-6">
-          {/* Full progress bar */}
-          <div className="relative h-3 bg-muted rounded-full overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-[25%] bg-primary rounded-full" />
-            <div className="absolute inset-y-0 left-[25%] w-[37.5%] bg-secondary rounded-full" />
-            <div className="absolute inset-y-0 left-[62.5%] w-[37.5%] bg-accent rounded-full" />
-          </div>
-          <div className="flex justify-between text-xs text-muted-foreground font-mono px-1">
-            {Array.from({ length: 17 }, (_, i) => (
-              <span key={i}>{i === 0 ? 'Início' : `S${i}`}</span>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {months.map((m, i) => (
-              <GlassCard key={i} className="p-5 relative overflow-hidden">
-                <div className={`absolute top-0 left-0 right-0 h-1.5 ${m.color}`} />
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-bold text-lg">{m.label}</span>
-                  <span className="text-xs text-muted-foreground font-mono">Sem {m.weeks}</span>
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Contact list */}
+          <div className="space-y-2">
+            <div className="text-[11px] text-zinc-500 uppercase tracking-wider mb-3">
+              Base histórica — leads não convertidos
+            </div>
+            {contacts.map((c, i) => (
+              <div
+                key={i}
+                className={`flex items-center gap-3 glass rounded-xl px-4 py-3 stagger-${i}`}
+              >
+                <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xs text-zinc-400">{c.name[0]}</span>
                 </div>
-                <h4 className="font-semibold text-sm mb-3">{m.title}</h4>
-                <ul className="space-y-2">
-                  {m.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </GlassCard>
-            ))}
-          </div>
-
-          <div className="flex justify-center gap-8 text-sm">
-            {[
-              { label: 'Semana 4', desc: 'CRM Operacional' },
-              { label: 'Semana 10', desc: 'E-commerce Integrado' },
-              { label: 'Semana 16', desc: 'Projeto Completo' },
-            ].map((m, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-accent" />
-                <span className="text-accent font-medium">{m.label}</span>
-                <span className="text-muted-foreground">— {m.desc}</span>
+                <div className="flex-1">
+                  <div className="text-sm font-medium text-white">{c.name}</div>
+                  <div className="text-xs text-zinc-500">{c.value}</div>
+                </div>
+                {c.reactivate ? (
+                  <div className="flex items-center gap-1.5">
+                    <ArrowRight className="w-3.5 h-3.5" style={{ color: '#c9a84c' }} />
+                    <span className="text-xs font-medium" style={{ color: '#c9a84c' }}>
+                      reativar
+                    </span>
+                  </div>
+                ) : (
+                  <span className="text-xs text-zinc-600">adormecido</span>
+                )}
               </div>
             ))}
+          </div>
+
+          {/* Mechanics + metric */}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              {[
+                'Base histórica do Agendor + planilhas importada para o AIOS',
+                'Segmentação por faixa de valor e motivo de não-conversão',
+                'Disparo segmentado via API com mensagem personalizada',
+                'IA qualifica os que respondem e insere no funil ativo',
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 glass rounded-xl px-4 py-3">
+                  <div
+                    className="text-[10px] font-mono mt-0.5 flex-shrink-0 font-bold"
+                    style={{ color: '#c9a84c' }}
+                  >
+                    0{i + 1}
+                  </div>
+                  <span className="text-sm text-zinc-300">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Animated metric */}
+            <div
+              className="p-5 rounded-2xl text-center"
+              style={{
+                background: 'rgba(201,168,76,0.06)',
+                border: '1px solid rgba(201,168,76,0.22)',
+              }}
+            >
+              <div
+                className="text-5xl font-bold font-serif mb-1"
+                style={{ color: '#c9a84c' }}
+              >
+                {percent}%
+              </div>
+              <div className="text-xs text-zinc-400 leading-relaxed">
+                Entre 8% e 15% de uma base inativa responde positivamente a uma campanha
+                de reativação bem estruturada.
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -74,129 +100,182 @@ export const RoadmapSlide = () => {
   );
 };
 
-export const TechStackSlide = () => {
-  const stack = [
-    { emoji: '💬', title: 'WhatsApp Business API', desc: 'Comunicação com clientes', category: 'Mensageria' },
-    { emoji: '🤖', title: 'n8n', desc: 'Workflows e integrações', category: 'Automação' },
-    { emoji: '🗄️', title: 'Supabase (PostgreSQL)', desc: 'Armazenamento e análise', category: 'Banco de Dados' },
-    { emoji: '🧠', title: 'OpenAI / Claude', desc: 'IA conversacional', category: 'Inteligência' },
-    { emoji: '💳', title: 'Auryn Gateway', desc: 'Processamento de transações', category: 'Pagamentos' },
-    { emoji: '📊', title: 'Sistema AIOS', desc: 'Gestão de relacionamento', category: 'CRM' },
-  ];
+// ─────────────────────────────────────────────
+// SLIDE 10 — INVESTIMENTO
+// ─────────────────────────────────────────────
+const includes = [
+  'Toda a configuração por conta da equipe AIOS',
+  'IA parametrizada para os dois fluxos',
+  'Integração com Meta / Instagram Ads',
+  'Migração do Agendor',
+  'Multi-atendente configurado',
+  'Treinamento da equipe incluído',
+  'Suporte contínuo',
+];
 
-  return (
-    <SlideWrapper>
-      <SlideTitle subtitle="Ferramentas e integrações do projeto">Stack Tecnológico</SlideTitle>
-      <div className="flex-1 flex items-center">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
-          {stack.map((t, i) => (
-            <GlassCard key={i} className="p-5 hover:scale-[1.03] transition-transform text-center">
-              <span className="text-3xl mb-3 block">{t.emoji}</span>
-              <span className="inline-flex px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-primary/10 text-primary mb-2">
-                {t.category}
-              </span>
-              <h4 className="font-bold text-sm mb-1">{t.title}</h4>
-              <p className="text-xs text-muted-foreground">{t.desc}</p>
-            </GlassCard>
+export const InvestmentSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full relative px-6 overflow-hidden">
+    {/* Ambient glow */}
+    <div
+      className="absolute top-1/3 left-1/3 w-80 h-80 rounded-full blur-[130px] animate-pulse-glow"
+      style={{ background: 'rgba(201,168,76,0.06)' }}
+    />
+
+    <div className="w-full max-w-xl relative z-10">
+      <h2 className="font-serif text-3xl md:text-4xl font-bold text-white text-center mb-7 leading-tight">
+        Uma estrutura completa<br />por um custo previsível
+      </h2>
+
+      {/* Main pricing card */}
+      <div
+        className="rounded-2xl p-7 mb-5 animate-scale-in"
+        style={{
+          background: 'rgba(10,16,30,0.85)',
+          border: '1px solid rgba(201,168,76,0.42)',
+          boxShadow: '0 0 70px rgba(201,168,76,0.07)',
+        }}
+      >
+        {/* Title */}
+        <div className="text-center mb-5">
+          <div
+            className="text-[11px] font-semibold uppercase tracking-widest mb-1"
+            style={{ color: '#c9a84c' }}
+          >
+            Implementação AIOS · Samir Advocacia
+          </div>
+        </div>
+
+        {/* Prices */}
+        <div
+          className="flex items-end justify-center gap-8 py-5 border-y"
+          style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+        >
+          <div className="text-center">
+            <div className="text-xs text-zinc-500 mb-1">Setup único (turn-key)</div>
+            <div className="text-3xl font-bold font-serif text-white">R$ 4.000</div>
+          </div>
+          <div className="text-zinc-700 text-xl mb-1">+</div>
+          <div className="text-center">
+            <div className="text-xs text-zinc-500 mb-1">Mensalidade</div>
+            <div className="text-3xl font-bold font-serif" style={{ color: '#c9a84c' }}>
+              R$ 1.800
+              <span className="text-base font-normal text-zinc-400">/mês</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Includes */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-2 mt-5">
+          {includes.map((item, i) => (
+            <div key={i} className="flex items-start gap-2 text-xs text-zinc-300">
+              <CheckCircle2
+                className="w-3.5 h-3.5 flex-shrink-0 mt-0.5"
+                style={{ color: '#c9a84c' }}
+              />
+              {item}
+            </div>
           ))}
         </div>
       </div>
-    </SlideWrapper>
-  );
-};
 
-export const BenefitsSlide = () => {
-  const comparisons = [
-    { before: '1 número compartilhado', after: '3 números segmentados' },
-    { before: 'Gestão desorganizada', after: 'Hierarquia estruturada' },
-    { before: 'Processos manuais', after: 'Automação inteligente' },
-    { before: 'Sem follow-up', after: 'Follow-up 24/7 com IA' },
-    { before: 'Sem dados', after: 'Dashboards em tempo real' },
-    { before: 'Abordagem reativa', after: 'Estratégia proativa' },
-  ];
-
-  const kpis = [
-    { icon: Clock, label: '−70% tempo de resposta' },
-    { icon: TrendingUp, label: '+40% taxa de conversão' },
-    { icon: Eye, label: '100% rastreabilidade' },
-    { icon: Shield, label: '24/7 disponibilidade' },
-    { icon: Target, label: 'Zero perda de oportunidades' },
-  ];
-
-  return (
-    <SlideWrapper>
-      <SlideTitle subtitle="Impacto mensurável da transformação">Benefícios Esperados</SlideTitle>
-      <div className="flex-1 flex items-center">
-        <div className="w-full space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {comparisons.map((c, i) => (
-              <div key={i} className="flex items-center gap-3 glass rounded-xl px-4 py-3">
-                <span className="text-xs text-destructive/70 line-through flex-1">{c.before}</span>
-                <ArrowRight className="w-4 h-4 text-accent flex-shrink-0" />
-                <span className="text-xs text-accent font-medium flex-1">{c.after}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            {kpis.map((k, i) => (
-              <GlassCard key={i} className="px-4 py-3 flex items-center gap-2 border-accent/20">
-                <k.icon className="w-4 h-4 text-accent" />
-                <span className="text-sm font-semibold">{k.label}</span>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-      </div>
-    </SlideWrapper>
-  );
-};
-
-export const NextStepsSlide = () => {
-  const steps = [
-    {
-      icon: CheckCircle2, title: 'Alinhamento Final', color: 'text-primary',
-      items: ['Validação do escopo', 'Confirmação de timeline', 'Definição de responsáveis'],
-    },
-    {
-      icon: Rocket, title: 'Kick-off do Projeto', color: 'text-secondary',
-      items: ['Assinatura de contrato', 'Início Semana 1', 'Reunião de alinhamento'],
-    },
-    {
-      icon: Handshake, title: 'Acompanhamento', color: 'text-accent',
-      items: ['Reuniões semanais de status', 'Validações por etapa', 'Suporte contínuo'],
-    },
-  ];
-
-  return (
-    <SlideWrapper className="justify-center">
-      <div className="text-center mb-10">
-        <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-3">Próximos Passos</h2>
-        <p className="text-muted-foreground text-lg">Vamos transformar a gestão comercial da Matrix</p>
+      {/* Supporting lines */}
+      <div className="flex items-center justify-center gap-5 text-xs text-zinc-500 mb-4">
+        <span>Modelo turn-key: entregamos tudo pronto para uso.</span>
+        <span className="w-px h-3 bg-zinc-700 flex-shrink-0" />
+        <span>Sem fidelidade no primeiro mês.</span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto w-full mb-10">
-        {steps.map((s, i) => (
-          <GlassCard key={i} className="p-6 hover:scale-[1.03] transition-transform">
-            <s.icon className={`w-8 h-8 mb-4 ${s.color}`} />
-            <h3 className="font-bold text-lg mb-3">{s.title}</h3>
-            <ul className="space-y-2">
-              {s.items.map((item, j) => (
-                <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+      <div className="text-center text-xs text-zinc-600 italic">
+        O custo mensal equivale a menos de 1% do honorário de um único caso de R$ 1M+
+        captado pelo sistema.
+      </div>
+    </div>
+  </div>
+);
+
+// ─────────────────────────────────────────────
+// SLIDE 11 — PRÓXIMOS PASSOS
+// ─────────────────────────────────────────────
+const timeline = [
+  { week: 'Semana 1', title: 'Onboarding', desc: 'Acesso à plataforma, criação do grupo operacional' },
+  { week: 'Semana 2', title: 'IA parametrizada', desc: 'Dois fluxos configurados e testados internamente' },
+  { week: 'Semana 3', title: 'Integração ativa', desc: 'Meta Ads conectado + migração do Agendor' },
+  { week: 'Semana 4', title: 'Produção completa', desc: 'Time treinado, sistema operando' },
+];
+
+export const NextStepsSlide = () => (
+  <SlideWrapper>
+    <SlideTitle subtitle="Da assinatura ao primeiro lead qualificado automaticamente">
+      Próximos passos
+    </SlideTitle>
+
+    <div className="flex-1 flex flex-col justify-center gap-6">
+      {/* Timeline weeks */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {timeline.map((step, i) => (
+          <GlassCard
+            key={i}
+            className={`p-4 relative overflow-hidden stagger-${i} hover:scale-[1.03] transition-transform`}
+          >
+            <div
+              className="absolute top-0 left-0 right-0 h-0.5"
+              style={{ background: 'rgba(201,168,76,0.55)' }}
+            />
+            <div
+              className="text-[10px] font-mono mb-2 font-semibold"
+              style={{ color: '#c9a84c' }}
+            >
+              {step.week}
+            </div>
+            <div className="font-semibold text-sm text-white mb-1">{step.title}</div>
+            <div className="text-xs text-zinc-400 leading-relaxed">{step.desc}</div>
           </GlassCard>
         ))}
       </div>
 
-      <div className="text-center">
-        <div className="inline-flex px-6 py-3 rounded-full glass glow-primary text-primary font-semibold tracking-wide">
-          AIOS CRM — Transformação Digital Matrix
-        </div>
+      {/* CTA Buttons */}
+      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <button
+          className="px-8 py-4 rounded-xl font-semibold text-sm transition-all hover:scale-105 hover:opacity-90"
+          style={{
+            background: '#c9a84c',
+            color: '#070b14',
+            boxShadow: '0 0 32px rgba(201,168,76,0.28)',
+          }}
+        >
+          Quero avançar com a proposta
+        </button>
+        <button
+          className="px-8 py-4 rounded-xl font-semibold text-sm transition-all hover:bg-white/5"
+          style={{ border: '1px solid rgba(201,168,76,0.4)', color: '#c9a84c' }}
+        >
+          Tenho uma dúvida
+        </button>
       </div>
-    </SlideWrapper>
-  );
-};
+
+      {/* Footer */}
+      <div
+        className="flex flex-col md:flex-row items-center justify-between gap-3 pt-4 border-t"
+        style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+      >
+        <div className="flex items-center gap-3 text-xs text-zinc-500 flex-wrap justify-center">
+          <span>Felipe · Murilo — Equipe AIOS</span>
+          <span className="w-px h-3 bg-zinc-700" />
+          <span
+            className="px-3 py-1 rounded-full"
+            style={{
+              background: 'rgba(201,168,76,0.08)',
+              border: '1px solid rgba(201,168,76,0.22)',
+              color: '#c9a84c',
+            }}
+          >
+            Proposta válida por 7 dias
+          </span>
+        </div>
+        <p className="text-xs text-zinc-500 italic text-center">
+          "O escritório Samir Advocacia já tem os leads. Agora é hora de ter o sistema que os converte."
+        </p>
+      </div>
+    </div>
+  </SlideWrapper>
+);
