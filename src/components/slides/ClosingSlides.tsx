@@ -235,8 +235,11 @@ export const NextStepsSlide = () => (
 
       {/* CTA Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <button
-          className="px-8 py-4 rounded-xl font-semibold text-sm transition-all hover:scale-105 hover:opacity-90"
+        <a
+          href="https://wa.me/351961342444?text=Ol%C3%A1%20Felipe%2C%20tudo%20bem%3F%20Quero%20marcar%20meu%20onboarding"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-8 py-4 rounded-xl font-semibold text-sm transition-all hover:scale-105 hover:opacity-90 text-center"
           style={{
             background: '#c9a84c',
             color: '#070b14',
@@ -244,13 +247,16 @@ export const NextStepsSlide = () => (
           }}
         >
           Quero avançar com a proposta
-        </button>
-        <button
-          className="px-8 py-4 rounded-xl font-semibold text-sm transition-all hover:bg-white/5"
+        </a>
+        <a
+          href="https://wa.me/351961342444?text=Ol%C3%A1%20Felipe%2C%20tudo%20bem%3F"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-8 py-4 rounded-xl font-semibold text-sm transition-all hover:bg-white/5 text-center"
           style={{ border: '1px solid rgba(201,168,76,0.4)', color: '#c9a84c' }}
         >
           Tenho uma dúvida
-        </button>
+        </a>
       </div>
 
       {/* Footer */}
